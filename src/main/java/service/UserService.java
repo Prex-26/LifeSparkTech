@@ -15,8 +15,8 @@ public class UserService {
     public User registerUser(User user) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String hashedPassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(hashedPassword); // Set the hashed password
-        return userRepository.save(user); // Save user to the database
+        user.setPassword(hashedPassword); 
+        return userRepository.save(user); 
     }
 
     public User findByUsername(String username) {

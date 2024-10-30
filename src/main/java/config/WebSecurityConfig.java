@@ -27,7 +27,7 @@ public class WebSecurityConfig {
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
             );
 
-        // ... rest of the configuration ...
+        
         http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
         
         return http.build();

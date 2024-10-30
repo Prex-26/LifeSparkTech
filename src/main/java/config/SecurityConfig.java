@@ -28,7 +28,7 @@ public class SecurityConfig {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/auth/**").permitAll()  // Add this to cover all auth endpoints
+                .requestMatchers("/api/auth/**").permitAll()  
                 .requestMatchers("/patients").permitAll()
                 .requestMatchers("/authenticate", "/register").permitAll()
                 .anyRequest().authenticated()

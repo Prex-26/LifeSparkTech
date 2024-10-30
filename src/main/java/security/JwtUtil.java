@@ -5,15 +5,11 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import org.springframework.stereotype.Component;
 
-// ... existing imports ...
 import jakarta.annotation.PostConstruct;
-// ... existing imports ...
 import javax.crypto.SecretKey;
-// ... rest of imports ...
-// ... rest of code ...import javax.crypto.SecretKey;
+
 import java.util.Date;
 import java.util.Map;
-// ... existing imports ...
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.HashMap;
@@ -30,7 +26,6 @@ public class JwtUtil {
         key = Keys.hmacShaKeyFor(secret.getBytes());
     }
 
-    // ... existing code ...
     
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>();
@@ -56,7 +51,7 @@ public class JwtUtil {
     }
 
     private Claims extractAllClaims(String token) {
-        return Jwts.parser()           // Changed from parserBuilder()
+        return Jwts.parser()           
                 .verifyWith(key)
                 .build()
                 .parseSignedClaims(token)

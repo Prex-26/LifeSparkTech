@@ -11,13 +11,11 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-// ... remaining imports ...
 import java.io.IOException;
 import service.JwtUserDetailsService;
 import security.JwtUtil;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.lang.NonNull;
-// ... remaining imports ...
 @Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
@@ -33,11 +31,9 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                                   @NonNull FilterChain chain)
             throws ServletException, IOException {
         final String requestTokenHeader = request.getHeader("Authorization");
-        // ... existing code ...
         String username = null;
         String jwtToken = null;
 
-        // JWT token is in the form "Bearer token"
         if (requestTokenHeader != null && requestTokenHeader.startsWith("Bearer ")) {
             jwtToken = requestTokenHeader.substring(7);
             try {
@@ -51,7 +47,6 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             logger.warn("JWT Token does not begin with Bearer String");
         }
 
-        // Validate token
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             UserDetails userDetails = jwtUserDetailsService.loadUserByUsername(username);
             if (jwtUtil.validateToken(jwtToken, userDetails.getUsername())) {  // Changed to pass username string
